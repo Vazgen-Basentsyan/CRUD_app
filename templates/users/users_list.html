@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="centered">
+        <thead>
+          <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Age</th>
+              <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for user in object_list %}
+        <tr>
+            <td><a href="{% url 'homes' %}?user_id={{ user.id }}">{{ user.first_name }}</a></td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.age }}</td>
+            <td><a href="{% url 'users-update' pk=user.pk %}" class="waves-effect waves-light btn">Edit</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+ {% include "pagination.html" %}
+{% endblock content %}
