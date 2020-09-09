@@ -156,7 +156,7 @@ class ImageListView(ListView):
     template_name = "users/home_images.html"
 
     def get_queryset(self):
-        home_id = self.request.GET.get("home_id")
+        home_id = self.request.resolver_match.kwargs.get("home_id")
         queryset = super().get_queryset().filter()
         if home_id:
             queryset = queryset.filter(home_id=home_id)
